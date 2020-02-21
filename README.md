@@ -1,0 +1,1 @@
+Tämä on harjoitustyö kurssille Ohjelmallinen sisällönhallinta.
