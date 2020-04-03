@@ -5,6 +5,10 @@ CREATE TABLE posts (
   creator VARCHAR(255)
 );
 
+CREATE TABLE data (
+  nimi VARCHAR(255) KEY,
+  summa FLOAT
+)
 --CREATE TABLE users (
 --  id SERIAL PRIMARY KEY,
 --  username VARCHAR(255) UNIQUE,

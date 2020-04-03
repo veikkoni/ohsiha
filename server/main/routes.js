@@ -41,13 +41,32 @@ var pool = require('./db')
     }
   });
 
+ 
+  router.get('/api/data', (req, res, next) => {
+    pool.query("SELECT * FROM data ORDER BY summa DESC LIMIT 20", (q_err, q_res) => {
+      res.setHeader('Content-Type', 'application/json');
+      //res.json(q_res.rows);
+      res.end(JSON.stringify(q_res.rows, null, 3));
+  })
+  });
 
-  /*
+
+/*
   
   router.post('/api/login', (req, res, next) => {
-    pool.query("", (q_err, q_res) => {
-        res.json(q_res.rows);
-    })
+  if (req.body.username == "") {
+      res.status(400).send();
+    } else {
+      const values = [req.body.username];
+      pool.query("INSERT INTO posts (title, body) VALUES ($1)", values, (q_err, q_res) => {
+        if (q_res != null){
+          if (q_res.rowCount == 0) {
+            res.status(400).send();
+          }
+        }
+        res.status(200).send();
+      })
+    }
   });
 
   router.post('/api/register', (req, res, next) => {
@@ -65,7 +84,7 @@ var pool = require('./db')
     })
   });
   
-  */
+*/
 
 
 module.exports = router

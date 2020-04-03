@@ -11,19 +11,34 @@ class App extends Component {
               Ohsiha harkkatyö
             </div>
             <div class="post-list">
+              <div class="post">
+                <div class="post-heading">
+                  Data
+                </div>
+                <div class="post-text">
+                  <div id="content">
+                    {this.state.data.map((item) => (                      
+                      <p>{item.nimi} = {item.summa}€</p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="post-list">
               <Posts posts={this.state.posts} />
               <center>
                 <NewPost />
                 <Delete />
               </center>
             </div>
-
+            
           </div>
         )
     }
 
     state = {
-        posts: []
+        posts: [],
+        data : []
     };
 
     componentDidMount() {
@@ -33,6 +48,13 @@ class App extends Component {
                 this.setState({ posts: data })
             })
             .catch(console.log)
+        fetch('http://192.168.0.1:5000/api/data')
+            .then(res => res.json())
+            .then((data) => {
+                this.setState({ data: data })
+            })
+            .catch(console.log)
+        
     }
 }
 
