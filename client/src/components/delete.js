@@ -12,6 +12,7 @@ class Delete extends React.Component {
             },
             body: JSON.stringify({
                 id: event.target.id.value,
+                user: localStorage.getItem('username'),
             })
         })
         window.location.reload();

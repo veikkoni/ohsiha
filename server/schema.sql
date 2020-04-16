@@ -6,9 +6,12 @@ CREATE TABLE posts (
 );
 
 CREATE TABLE data (
-  nimi VARCHAR(255) KEY,
-  summa FLOAT
-)
+  nimi VARCHAR(255),
+  summa FLOAT,
+  osio VARCHAR(255),
+  vuosi INT,
+  PRIMARY KEY(nimi, osio)
+);
 --CREATE TABLE users (
 --  id SERIAL PRIMARY KEY,
 --  username VARCHAR(255) UNIQUE,

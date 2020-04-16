@@ -3,6 +3,8 @@ import { NavLink, Switch, Route, withRouter} from 'react-router-dom';
 import Posts from './components/posts';
 import NewPost from './components/form';
 import Delete from './components/delete';
+import TreeMap from 'react-d3-treemap';
+import "react-d3-treemap/dist/react.d3.treemap.css";
 
 
 const App = () => (
@@ -59,6 +61,11 @@ class Login extends Component {
       event.preventDefault();
     }
   
+    componentDidMount() {
+      localStorage.setItem('username', 'username');
+
+    }
+
     render() {
       return (
         <center>
@@ -88,14 +95,15 @@ class Login extends Component {
   }
 ;
 
-class Index extends Component {
-  render() {
-    return(<div>Hetkinen...</div>)
-  }
-  componentDidMount() {
-    this.props.history.push('/data')
-  }
-}
+//class Index extends Component {
+//  render() {
+//    return(<div>Hetkinen...</div>)
+//  }
+//  componentDidMount() {
+//    this.props.history.push('/data')
+//  }
+//}
+
 class Home extends Component {
   render() {
     return(
@@ -134,7 +142,7 @@ class Home extends Component {
 };
 
 const DataWrapper = () => (
-  <div class='content'>
+  <div class='data-content'>
     <Home />
     <div class="post-list">
       <DataFrame />
@@ -165,14 +173,18 @@ class DataFrame extends Component {
           <div class="post-list">
             <div class="post">
               <div class="post-heading">
-                Data
+                Tampereen kaupungin noin 1000 suurinta toimittajaa vuosina 2012-2018 lajiteltuna tulosyksikön mukaan. Asettamalla hiiren kohteen päälle näet tarkempia tietoja.
               </div>
               <div class="post-text">
-                <div id="content">
-                  {this.state.data.map((item) => (                      
-                  <p>{item.nimi} = {item.summa}€</p>
-                  ))}
-                </div>
+                <center>
+              <TreeMap
+                height={1000}
+                width={1500}
+                data={this.state.data}
+                valueUnit={"EUR"}
+              />
+              </center>
+              Data osoitteesta https://data.tampere.fi/data/fi/dataset/tampereen-kaupungin-ostot. Eri vuosina ostojen kategorisointi on muuttunut huomattavasti. Valitettavasti kuvaaja ei skaalaudu vaan vaatii leveän tilan.
               </div>
             </div>
           </div>
@@ -185,12 +197,13 @@ class DataFrame extends Component {
   };
 
     componentDidMount() {
-      fetch('http://192.168.0.1:5000/api/data')
+      fetch('http://hoodienkuninkaat.com:5000/api/data')
           .then(res => res.json())
           .then((data) => {
               this.setState({ data: data })
           })
           .catch(console.log)
+          
       
   }
 
@@ -218,7 +231,7 @@ class PostFrame extends Component {
     };
 
     componentDidMount() {
-        fetch('http://192.168.0.1:5000/api/posts')
+        fetch('http://hoodienkuninkaat.com:5000/api/posts?user=' + localStorage.getItem('username'))
             .then(res => res.json())
             .then((data) => {
                 this.setState({ posts: data })

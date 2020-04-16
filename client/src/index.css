@@ -81,11 +81,21 @@ body {
 
 }
 
-
 .link {
   color: black;
   padding: 10px;
   padding-top: 0px;
   font-size: 16px;
   display: inline;
+}
+
+.data-content {
+  width: 1600px;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-color: black;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 3px;
 }

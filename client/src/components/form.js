@@ -32,6 +32,7 @@ class NewPost extends React.Component {
             body: JSON.stringify({
                 title: event.target.title.value,
                 body: event.target.body.value,
+                user: localStorage.getItem('username')
             })
         })
         window.location.reload();
