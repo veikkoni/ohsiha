@@ -231,7 +231,7 @@ class PostFrame extends Component {
     };
 
     componentDidMount() {
-        fetch('http://hoodienkuninkaat.com:5000/api/posts?user=' + localStorage.getItem('username'))
+        fetch('http://hoodienkuninkaat.com:5000/api/post?user=' + localStorage.getItem('username'))
             .then(res => res.json())
             .then((data) => {
                 this.setState({ posts: data })

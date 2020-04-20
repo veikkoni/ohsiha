@@ -2,7 +2,7 @@ var express = require('express')
 var router = express.Router()
 var pool = require('./db')
 
-  router.get('/api/posts', (req, res, next) => {
+  router.get('/api/post', (req, res, next) => {
     if (req.query.user == null){
       res.status(400).send();
     } else {
@@ -12,7 +12,6 @@ var pool = require('./db')
           res.status(400).send();
         } else {
           res.setHeader('Content-Type', 'application/json');
-          //res.json(q_res.rows);
           res.end(JSON.stringify(q_res.rows, null, 3));
         }
       })
@@ -82,47 +81,13 @@ var pool = require('./db')
       };
       var rdata = {name: "Tampereen kaupungin ostot", children : data}
       res.setHeader('Content-Type', 'application/json');
-      //res.end(JSON.stringify(q_res.rows, null, 3).replace(/"([^"]+)":/g, '$1:'));
-      //res.json(q_res.rows);
       res.json(rdata)
       })
   });
 
-
-/*
-  
-  router.post('/api/login', (req, res, next) => {
-  if (req.body.username == "") {
-      res.status(400).send();
-    } else {
-      const values = [req.body.username];
-      pool.query("INSERT INTO posts (title, body) VALUES ($1)", values, (q_err, q_res) => {
-        if (q_res != null){
-          if (q_res.rowCount == 0) {
-            res.status(400).send();
-          }
-        }
-        res.status(200).send();
-      })
-    }
-  });
-
-  router.post('/api/register', (req, res, next) => {
-    if (req.body.username == null || req.body.pass == null) {
-      res.status(400).send();
-    }
-    const values = [req.body.username, req.body.pass];
-    pool.query("INSERT INTO users (username, pass) VALUES ( $1, $2)", values, (q_err, q_res) => {
-      if (q_res != null){
-        if (q_res.rowCount == 0) {
-          res.status(400).send();
-        }
-      }
-      res.status(200).send();
-    })
-  });
-  
-*/
+  router.get(['/', '/api/'], (req, res, next) => {
+    res.redirect('http://hoodienkuninkaat.com/ohsiha/api/doc');
+  })
 
 
 module.exports = router

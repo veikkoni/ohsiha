@@ -4,7 +4,7 @@ class Delete extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        fetch('http://192.168.0.1:5000/api/post', {
+        fetch('http://hoodienkuninkaat.com:5000/api/post', {
             method: 'DELETE',
                 headers: {
                 'Accept': 'application/json',
