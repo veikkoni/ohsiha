@@ -197,7 +197,7 @@ class DataFrame extends Component {
   };
 
     componentDidMount() {
-      fetch('http://hoodienkuninkaat.com:5000/api/data')
+      fetch('http://192.168.0.1:5000/api/data')
           .then(res => res.json())
           .then((data) => {
               this.setState({ data: data })
@@ -231,7 +231,7 @@ class PostFrame extends Component {
     };
 
     componentDidMount() {
-        fetch('http://hoodienkuninkaat.com:5000/api/post?user=' + localStorage.getItem('username'))
+        fetch('http://192.168.0.1:5000/api/post?user=' + localStorage.getItem('username'))
             .then(res => res.json())
             .then((data) => {
                 this.setState({ posts: data })

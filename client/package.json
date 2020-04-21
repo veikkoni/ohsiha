@@ -6,9 +6,6 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "@vx/vx": "0.0.195",
-    "d3-scale": "3.2.1",
-    "nivo": "^0.31.0",
     "react": "^16.13.0",
     "react-d3-treemap": "^1.0.15",
     "react-dom": "^16.13.0",
@@ -35,6 +32,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ],
-    "proxy": "http://hoodienkuninkaat.com:5000"
+    "proxy": "http://192.168.0.1:5000"
   }
 }
